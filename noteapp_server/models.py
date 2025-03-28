@@ -37,7 +37,6 @@ class UserCreate(BaseModel):
 
 class Note(Document):
     note_id: UUID = Field(default_factory=uuid4, unique=True)
-    user_id: UUID 
     note_title: str 
     note_content: str 
     last_update: date = Field(default_factory=date.today)

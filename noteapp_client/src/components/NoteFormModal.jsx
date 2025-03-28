@@ -13,7 +13,7 @@ const NoteModal = ({ isOpen, onClose }) => {
       note_content: note_content
     }
 
-    dispatch(addNote(note_content))
+    dispatch(addNote(formData))
     onClose()
   }
   const isSaveDisabled = note_title.trim() === "" || note_content.trim() === "";
@@ -32,7 +32,7 @@ const NoteModal = ({ isOpen, onClose }) => {
           placeholder="Note Title"
           value={note_title}
           onChange={(e) => setNoteTitle(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-300"
+          className="w-full p-2 border border-gray-300 rounded-md text-gray-600 focus:ring focus:ring-indigo-300"
         />
 
         {/* Note Content Input */}
@@ -40,7 +40,7 @@ const NoteModal = ({ isOpen, onClose }) => {
           placeholder="Write your note here..."
           value={note_content}
           onChange={(e) => setNoteContent(e.target.value)}
-          className="w-full mt-3 p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-300 h-32"
+          className="w-full text-slate-600 mt-3 p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-300 h-32"
         />
 
         {/* Buttons */}

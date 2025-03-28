@@ -1,10 +1,12 @@
-"use client";  
-import {useEffect} from "react"
+"use client";
+import { useEffect } from "react";
 import { Provider, useDispatch } from "react-redux";
-import store from "./store";  
+import store from "./store";
+import { setAccessToken } from "./authSlice.js"; 
 
-export default function StoreProvider({ children }) {
-  const dispatch = useDispatch()
+function TokenInitializer() {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("accessToken");
@@ -14,6 +16,15 @@ export default function StoreProvider({ children }) {
     }
   }, [dispatch]);
 
-  return <Provider store={store}>{children}</Provider>;
+  return null; 
+}
+
+export default function StoreProvider({ children }) {
+  return (
+    <Provider store={store}>
+      <TokenInitializer />
+      {children}
+    </Provider>
+  );
 }
 

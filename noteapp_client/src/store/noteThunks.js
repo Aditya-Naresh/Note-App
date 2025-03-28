@@ -6,7 +6,8 @@ export const addNote = createAsyncThunk(
   "note/addNote",
   async(noteData, {rejectWithValue}) => {
     try {
-      const response = await axiosInstance.post("/notes")
+      const formData = JSON.stringify(noteData)
+      const response = await axiosInstance.post("/notes", formData)
       return response.data
     } catch (error) {
      return rejectWithValue(error.response.data) 
@@ -46,7 +47,7 @@ export const deleteNote = createAsyncThunk(
   "note/deleteNode",
   async (id, {rejectWithValue}) => {
     try {
-      const response = await axiosInstance.delete(`api/notes/${id}`)
+      const response = await axiosInstance.delete(`/notes/${id}`)
       return response.data 
     } catch (error) {
       return rejectWithValue(error.response.data)

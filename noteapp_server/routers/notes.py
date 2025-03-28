@@ -35,8 +35,11 @@ async def update_note(note_id: str, request: NoteCreate):
 @router.delete("/{note_id}")
 async def delete_note(note_id: str):
     note = await Note.get(note_id)
-    throw_exception(note)
+    if not note:
+        raise HTTPException(status_code=404, detail="Note not found")
+
     await note.delete()
+    return {"message": "Note deleted successfully"}
 
 
 def throw_exception(note):

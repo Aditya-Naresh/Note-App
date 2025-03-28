@@ -17,7 +17,7 @@ const authSlice = createSlice({
     },
     setAccessToken: (state, action) => {
       state.accessToken = action.payload 
-      localStorage.setItem("accessToken")
+      localStorage.setItem("accessToken", action.payload)
     }
   },
   extraReducers: (builder) => {
@@ -52,6 +52,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { signOut } = authSlice.actions;
+export const { signOut, setAccessToken } = authSlice.actions;
 export default authSlice.reducer;
 
